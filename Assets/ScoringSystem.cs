@@ -17,8 +17,43 @@ public class ScoringSystem : MonoBehaviour
 
     private float CalcToppingScore(Customer customer)
     {
-        // !! to be implemented!!!
-        return 0.5f;
+        GameObject cone = GameObject.FindGameObjectWithTag("IceCreamCone");
+        int[] allToppings = {0, 0, 0, 0};
+        float i = 0f;
+        int correctToppings = 0;
+        foreach(Transform topping in cone.transform)
+        {
+            //allToppings[i] = topping.gameObject;
+            i+=1;
+            int topID = GetToppingID(topping.gameObject.name);
+            Debug.Log(topping.gameObject.name + ", ID: " + topID);
+            if(topID > -1)
+            {
+                allToppings[topID] += 1;
+                if(customer.order.toppingAmount[topID] > 0)
+                {
+                    correctToppings++;
+                }
+            }
+        }
+
+        return correctToppings/i;
+    }
+
+    private int GetToppingID(string name)
+    {
+        switch (name)
+        {
+            case "Cherry(Clone)":
+                return 0;
+            case "Cookie Chunk(Clone)":
+                return 1;
+            case "Sprinkle(Clone)":
+                return 2;
+            case "EandE(Clone)":
+                return 3;
+        }
+        return -1;
     }
 
     private float CalcTimeScore(float timeHeld, float maxPatience)

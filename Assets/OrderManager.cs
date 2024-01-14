@@ -52,7 +52,9 @@ public class OrderManager : MonoBehaviour
         Debug.Log("Order is done!");
         toppingSpawner.StopSpawn();
         float score = scoringSystem.CalcScore(c, timeHeld);
-        //Debug.Log($"Score for Customer is: {score}");
+        Debug.Log($"Score for Customer is: {score}");
+        float tip = score * c.tip;
+        cUIDisplay.DisplayScore(score, tip);
     }
 
 

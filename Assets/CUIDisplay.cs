@@ -41,9 +41,21 @@ public class CUIDisplay : MonoBehaviour
         orderBox.color = Color.clear;
         Debug.Log("Order text cleared");
     }
+
+    public void DisplayScore(float score, float tip)
+    {
+        string scoreString = "Thanks, take $" + tip + ".";
+        scoreString += '\n' + "Accuracy: " + score + "%";
+        Debug.Log(scoreString);
+
+        orderText.text = scoreString; // asign to UI text element
+        orderBox.color = Color.red;
+        StartCoroutine(ClearOrderDisplay(5f)); 
+
+    }
      private string ToString(int topping)
     {
-        string[] toppingNames = { "sprinkles", "cookies", "cherries", "E&Es" };
+        string[] toppingNames = { "sprinkles", "cookies", "cherries", "E&E's" };
         return toppingNames[topping];
     }
 }
