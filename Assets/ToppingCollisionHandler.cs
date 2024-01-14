@@ -12,5 +12,10 @@ public class ToppingCollisionHandler : MonoBehaviour
             transform.parent = collision.gameObject.transform;
             GetComponent<Rigidbody>().isKinematic = true;
         }
+
+        if (collision.gameObject.tag == "Floor")
+        {
+            Destroy(gameObject, 5);
+        }
     }
 }

@@ -7,11 +7,24 @@ public class ToppingSpawner : MonoBehaviour
     public GameObject[] toppingPrefabs;
     public float[] spawnProbabilities;
     public int[] amountBounds; // defines acceptable amounts for scoring
+    public bool doSpawn;
+    public float spawnFreq;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnTopping", 0f, 1f);    
+        doSpawn = true;
+
+        InvokeRepeating("SpawnTopping", 3f, spawnFreq);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!doSpawn)
+        {
+            CancelInvoke("SpawnTopping");
+        }
     }
 
     void SpawnTopping()
@@ -34,15 +47,8 @@ public class ToppingSpawner : MonoBehaviour
                 Vector3 spawnPosition = new Vector3(Random.Range(minX, maxX), planeY, Random.Range(minZ, maxZ));
                 GameObject topping = Instantiate(toppingPrefabs[i], spawnPosition, Quaternion.identity);
 
-
                 break;
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

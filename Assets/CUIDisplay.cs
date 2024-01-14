@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CUIDisplay : MonoBehaviour
 {
     public Text orderText;
+    public Image orderBox;
 
     public void DisplayOrder(Customer customer)
     {
@@ -30,8 +31,16 @@ public class CUIDisplay : MonoBehaviour
 
         Debug.Log(orderString);
         orderText.text = orderString; // asign to UI text element
+        orderBox.color = Color.red;
+        StartCoroutine(ClearOrderDisplay(12f)); // !! implement this as customer talking speed
     }
-
+    IEnumerator ClearOrderDisplay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        orderText.text = "";
+        orderBox.color = Color.clear;
+        Debug.Log("Order text cleared");
+    }
      private string ToString(int topping)
     {
         string[] toppingNames = { "sprinkles", "cookies", "cherries", "E&Es" };
