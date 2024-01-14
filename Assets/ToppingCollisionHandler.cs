@@ -6,7 +6,7 @@ public class ToppingCollisionHandler : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision detected");
+        //Debug.Log("Collision detected");
         if (collision.gameObject.tag == "IceCreamCone")
         {
             transform.parent = collision.gameObject.transform;

@@ -6,6 +6,7 @@ public class ToppingSpawner : MonoBehaviour
 {
     public GameObject[] toppingPrefabs;
     public float[] spawnProbabilities;
+    public int[] amountBounds; // defines acceptable amounts for scoring
 
     // Start is called before the first frame update
     void Start()
