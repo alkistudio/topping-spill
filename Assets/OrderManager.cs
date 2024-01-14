@@ -14,28 +14,12 @@ public class OrderManager : MonoBehaviour
     public float minSpawnInterval = 20f;
     public float maxSpawnInterval = 40f;
 
+
     void Start()
     {
         Debug.Log("OrderManager Start() Running");
         //StartCoroutine(SpawnCustomersRandomly());
-        queueManager.PushCustomer(CreateRandomCustomer());
-    }
-
-    Customer CreateRandomCustomer()
-    {
-        Debug.Log("CreateRandomCustomer() Running");
-        Customer randomCustomer = gameObject.AddComponent<Customer>();
-        randomCustomer.customerID = 0;
-        randomCustomer.talkingSpeed = 10;
-        randomCustomer.patience = 30;
-        randomCustomer.tip = 25;
-        Order exOrder = new();
-        exOrder.toppingAmount = new int[] { 0, 1, 2, 1 };
-        randomCustomer.order = exOrder;
-
-        cUIDisplay.DisplayOrder(randomCustomer);
-
-        return randomCustomer;
+        //queueManager.PushCustomer(CreateRandomCustomer());
     }
 
     // Update is called once per frame

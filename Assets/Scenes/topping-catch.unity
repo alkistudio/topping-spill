@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 65532417}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1299,6 +1299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0918784726899eb4cb1c2cc30a531b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cUIDisplay: {fileID: 739071402}
 --- !u!114 &739071401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1329,6 +1330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderText: {fileID: 1010849766}
+  orderBox: {fileID: 457585493}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1996,6 +1998,10 @@ PrefabInstance:
     - target: {fileID: 5192727441713193356, guid: f2bc569612a00fd4aa5751600166c3f5, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7834864665096583203, guid: f2bc569612a00fd4aa5751600166c3f5, type: 3}
+      propertyPath: spawnFreq
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
