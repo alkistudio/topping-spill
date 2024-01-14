@@ -26,8 +26,4 @@ public class ScoringSystem : MonoBehaviour
         float remainingPatience = Mathf.Clamp01(1f - timeHeld/ maxPatience);
         return 1f + remainingPatience;
     }
-    public void check()
-    {
-        Debug.Log("Hi");
-    }
 }

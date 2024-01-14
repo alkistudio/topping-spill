@@ -8,6 +8,7 @@ public class QueueManager : MonoBehaviour {
     private OrderManager orderManager;
     public CUIDisplay cUIDisplay;
     public ScoringSystem scoringSystem;
+    public ToppingSpawner toppingSpawner;
 
 
 
@@ -26,9 +27,9 @@ public class QueueManager : MonoBehaviour {
         Debug.Log("CreateRandomCustomer() Running");
         Customer randomCustomer = gameObject.AddComponent<Customer>();
         randomCustomer.customerID = 0;
-        randomCustomer.talkingSpeed = 10;
-        randomCustomer.patience = 30;
-        randomCustomer.tip = 25;
+        randomCustomer.talkingSpeed = 5f;
+        randomCustomer.patience = 12f;
+        randomCustomer.tip = 25f;
         Order exOrder = new();
         exOrder.toppingAmount = new int[] { 0, 1, 2, 1 };
         randomCustomer.order = exOrder;
@@ -50,6 +51,7 @@ public class QueueManager : MonoBehaviour {
             //cUIDisplay.DisplayOrder(nextCustomer);
             orderManager.cUIDisplay = cUIDisplay;
             orderManager.scoringSystem = scoringSystem;
+            orderManager.toppingSpawner = toppingSpawner;
             orderManager.StartOrder(nextCustomer);
         }
         Debug.Log("DioNextCustomer() -> No more customers!");

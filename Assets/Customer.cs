@@ -11,8 +11,8 @@ public class Order
 public class Customer : MonoBehaviour
 {
     public int customerID;
-    public int talkingSpeed;
-    public int patience;
-    public int tip;
+    public float talkingSpeed;
+    public float patience;
+    public float tip;
     public Order order;
 }

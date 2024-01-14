@@ -32,7 +32,7 @@ public class CUIDisplay : MonoBehaviour
         Debug.Log(orderString);
         orderText.text = orderString; // asign to UI text element
         orderBox.color = Color.red;
-        StartCoroutine(ClearOrderDisplay(12f)); // !! implement this as customer talking speed
+        StartCoroutine(ClearOrderDisplay(customer.talkingSpeed)); // !! implement this as customer talking speed
     }
     IEnumerator ClearOrderDisplay(float delay)
     {

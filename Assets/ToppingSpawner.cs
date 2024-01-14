@@ -7,7 +7,7 @@ public class ToppingSpawner : MonoBehaviour
     public GameObject[] toppingPrefabs;
     public float[] spawnProbabilities;
     public int[] amountBounds; // defines acceptable amounts for scoring
-    public bool doSpawn;
+    public bool doSpawn = true;
     public float spawnFreq;
 
     // Start is called before the first frame update
@@ -15,7 +15,7 @@ public class ToppingSpawner : MonoBehaviour
     {
         doSpawn = true;
 
-        InvokeRepeating("SpawnTopping", 3f, spawnFreq);
+        Debug.Log("ToppingSpawner Start()");
     }
 
     // Update is called once per frame
@@ -26,7 +26,16 @@ public class ToppingSpawner : MonoBehaviour
             CancelInvoke("SpawnTopping");
         }
     }
-
+    public void StartSpawn()
+    {
+        doSpawn = true;
+        InvokeRepeating("SpawnTopping", 3f, spawnFreq);
+    }
+    public void StopSpawn()
+    {
+        doSpawn = false;
+        CancelInvoke("SpawnTopping");
+    }
     void SpawnTopping()
     {
         float randomValue = Random.value;

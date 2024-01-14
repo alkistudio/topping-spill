@@ -8,9 +8,10 @@ public class OrderManager : MonoBehaviour
     
     public CUIDisplay cUIDisplay;
     public ScoringSystem scoringSystem;
+    public ToppingSpawner toppingSpawner;
 
     private float timeHeld;
-    private bool inProgress;
+    private bool inProgress = false;
 
     public float minSpawnInterval = 20f;
     public float maxSpawnInterval = 40f;
@@ -27,21 +28,30 @@ public class OrderManager : MonoBehaviour
         if (inProgress)
         {
             timeHeld += Time.deltaTime;
-            // !! Add timer UI update
+            if(timeHeld > c.patience)
+            { 
+                Debug.Log("Time's up!");
+                EndOrder();
+            }
         }
     }
 
     public void StartOrder(Customer currentCustomer)
     {
         timeHeld = 0;
+        inProgress = true;
+        toppingSpawner.StartSpawn();
         c = currentCustomer;
         cUIDisplay.DisplayOrder(c);
-        
-        scoringSystem.check();
-        
-        
-        
-        //float score = scoringSystem.CalcScore(c, timeHeld);
+        Debug.Log("StartOrder() running! You have this much time:"+c.patience);
+    }
+
+    public void EndOrder()
+    {
+        inProgress = false;
+        Debug.Log("Order is done!");
+        toppingSpawner.StopSpawn();
+        float score = scoringSystem.CalcScore(c, timeHeld);
         //Debug.Log($"Score for Customer is: {score}");
     }
 
