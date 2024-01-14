@@ -29,6 +29,7 @@ public class CUIDisplay : MonoBehaviour
         }
 
         Debug.Log(orderString);
+        orderText.text = orderString; // asign to UI text element
     }
 
      private string ToString(int topping)

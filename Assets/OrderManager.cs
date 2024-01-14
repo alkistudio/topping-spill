@@ -61,6 +61,9 @@ public class OrderManager : MonoBehaviour
                 float score = scoringSystem.CalcScore(currentCustomer, timeHeld, currentCustomer.patience);
                 Debug.Log($"Score for Customer is: {score}");
             }
+
+            timeHeld = 0f;
+            DisplayNextCustomer();
         }
     }
 
@@ -71,5 +74,6 @@ public class OrderManager : MonoBehaviour
         {
             cUIDisplay.DisplayOrder(nextCustomer);
         }
+        Debug.Log("DisplayNextCustomer() -> No more customers!");
     }
 }
