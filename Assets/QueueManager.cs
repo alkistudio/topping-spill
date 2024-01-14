@@ -5,7 +5,7 @@ using UnityEngine;
 public class QueueManager : MonoBehaviour {
 
     private Queue<Customer> cQueue = new Queue<Customer>();
-
+    private OrderManager orderManager;
     public CUIDisplay cUIDisplay;
 
 
@@ -13,8 +13,10 @@ public class QueueManager : MonoBehaviour {
     void Start()
     {
         Debug.Log("QueueManager Start() Running");
+        orderManager = gameObject.AddComponent<OrderManager>();
         //StartCoroutine(SpawnCustomersRandomly());
         PushCustomer(CreateRandomCustomer());
+        DoNextCustomer();
     }
 
 
@@ -30,12 +32,28 @@ public class QueueManager : MonoBehaviour {
         exOrder.toppingAmount = new int[] { 0, 1, 2, 1 };
         randomCustomer.order = exOrder;
 
-        cUIDisplay.DisplayOrder(randomCustomer);
+        //cUIDisplay.DisplayOrder(randomCustomer);
 
         return randomCustomer;
     }
 
-    // Queue functions ------------------------------------------------------
+    // Queue functions ===========================================================
+
+
+
+    public void DoNextCustomer()
+    {
+        Customer nextCustomer = PopCustomer();
+        if (nextCustomer != null)
+        {
+            //cUIDisplay.DisplayOrder(nextCustomer);
+            orderManager.cUIDisplay = cUIDisplay;
+            orderManager.StartOrder(nextCustomer);
+        }
+        Debug.Log("DioNextCustomer() -> No more customers!");
+    }
+
+    // Base Queue functions ------------------------------------------------------
 
     public void PushCustomer(Customer customer)
     {

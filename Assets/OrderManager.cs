@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class OrderManager : MonoBehaviour
 {
-    public QueueManager queueManager;
+    public Customer c;
+    
     public CUIDisplay cUIDisplay;
-    public ScoringSystem scoringSystem;
+    private ScoringSystem scoringSystem;
 
     private float timeHeld;
-    private bool isToppingTime;
+    private bool inProgress;
 
     public float minSpawnInterval = 20f;
     public float maxSpawnInterval = 40f;
@@ -17,47 +18,33 @@ public class OrderManager : MonoBehaviour
 
     void Start()
     {
+        scoringSystem = gameObject.AddComponent<ScoringSystem>();
         Debug.Log("OrderManager Start() Running");
-        //StartCoroutine(SpawnCustomersRandomly());
-        //queueManager.PushCustomer(CreateRandomCustomer());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isToppingTime)
+        if (inProgress)
         {
             timeHeld += Time.deltaTime;
             // !! Add timer UI update
         }
     }
-    public void ToppingTime(bool toppingTime)
+
+    public void StartOrder(Customer currentCustomer)
     {
-        isToppingTime = toppingTime;
-
-        if (!toppingTime)
-        {
-            // release cone + customer, run scoring
-            Customer currentCustomer = queueManager.PopCustomer();
-
-            if(currentCustomer != null)
-            {
-                float score = scoringSystem.CalcScore(currentCustomer, timeHeld, currentCustomer.patience);
-                Debug.Log($"Score for Customer is: {score}");
-            }
-
-            timeHeld = 0f;
-            DisplayNextCustomer();
-        }
+        timeHeld = 0;
+        c = currentCustomer;
+        cUIDisplay.DisplayOrder(c);
+        
+        //scoringSystem.check();
+        
+        
+        
+        //float score = scoringSystem.CalcScore(c, timeHeld);
+        //Debug.Log($"Score for Customer is: {score}");
     }
 
-    public void DisplayNextCustomer()
-    {
-        Customer nextCustomer = queueManager.PopCustomer();
-        if (nextCustomer != null)
-        {
-            cUIDisplay.DisplayOrder(nextCustomer);
-        }
-        Debug.Log("DisplayNextCustomer() -> No more customers!");
-    }
+
 }

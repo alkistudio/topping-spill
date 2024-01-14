@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ScoringSystem : MonoBehaviour
 {
-    public float CalcScore(Customer customer, float timeHeld, float maxPatience)
+    public float CalcScore(Customer customer, float timeHeld)
     {
+        float maxPatience = customer.patience;
         float toppingMultiplier = CalcToppingScore(customer);
         float timeBonusMultiplier = CalcTimeScore(timeHeld, maxPatience);
 
@@ -24,5 +25,9 @@ public class ScoringSystem : MonoBehaviour
     {
         float remainingPatience = Mathf.Clamp01(1f - timeHeld/ maxPatience);
         return 1f + remainingPatience;
+    }
+    public void check()
+    {
+        Debug.Log("Hi");
     }
 }
