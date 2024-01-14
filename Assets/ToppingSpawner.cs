@@ -31,7 +31,9 @@ public class ToppingSpawner : MonoBehaviour
             if (randomValue <= cumulativeProbability)
             {
                 Vector3 spawnPosition = new Vector3(Random.Range(minX, maxX), planeY, Random.Range(minZ, maxZ));
-                Instantiate(toppingPrefabs[i], spawnPosition, Quaternion.identity);
+                GameObject topping = Instantiate(toppingPrefabs[i], spawnPosition, Quaternion.identity);
+
+
                 break;
             }
         }
