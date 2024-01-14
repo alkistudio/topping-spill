@@ -7,7 +7,7 @@ public class OrderManager : MonoBehaviour
     public Customer c;
     
     public CUIDisplay cUIDisplay;
-    private ScoringSystem scoringSystem;
+    public ScoringSystem scoringSystem;
 
     private float timeHeld;
     private bool inProgress;
@@ -18,7 +18,6 @@ public class OrderManager : MonoBehaviour
 
     void Start()
     {
-        scoringSystem = gameObject.AddComponent<ScoringSystem>();
         Debug.Log("OrderManager Start() Running");
     }
 
@@ -38,7 +37,7 @@ public class OrderManager : MonoBehaviour
         c = currentCustomer;
         cUIDisplay.DisplayOrder(c);
         
-        //scoringSystem.check();
+        scoringSystem.check();
         
         
         

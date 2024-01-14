@@ -7,6 +7,7 @@ public class QueueManager : MonoBehaviour {
     private Queue<Customer> cQueue = new Queue<Customer>();
     private OrderManager orderManager;
     public CUIDisplay cUIDisplay;
+    public ScoringSystem scoringSystem;
 
 
 
@@ -48,6 +49,7 @@ public class QueueManager : MonoBehaviour {
         {
             //cUIDisplay.DisplayOrder(nextCustomer);
             orderManager.cUIDisplay = cUIDisplay;
+            orderManager.scoringSystem = scoringSystem;
             orderManager.StartOrder(nextCustomer);
         }
         Debug.Log("DioNextCustomer() -> No more customers!");
